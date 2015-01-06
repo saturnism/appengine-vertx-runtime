@@ -25,12 +25,13 @@ RUN apt-get -q update && \
   rm /var/lib/apt/lists/*_*
 
 RUN useradd -ms /bin/bash vertx
-RUN mkdir -p ${VERTX_HOME} ${DEPLOYMENTS_HOME}
-RUN chown vertx:vertx ${VERTX_HOME} ${DEPLOYMENTS_HOME}
+RUN mkdir -p ${VERTX_HOME} ${DEPLOYMENTS_HOME} /var/log/app_engine/custom_logs
+RUN chown vertx:vertx ${VERTX_HOME} ${DEPLOYMENTS_HOME} /var/log/app_engine/custom_logs
 
 USER vertx
 
-RUN mkdir -p $VERTX_HOME && (curl -0L http://dl.bintray.com/vertx/downloads/vert.x-${VERTX_VERSION}.tar.gz | tar -C ${VERTX_HOME} --strip-components=1 -zx)
+RUN mkdir -p ${VERTX_HOME} && (curl -0L http://dl.bintray.com/vertx/downloads/vert.x-${VERTX_VERSION}.tar.gz | tar -C ${VERTX_HOME} --strip-components=1 -zx)
+RUN sed -i "s,%t,/var/log/app_engine/custom_logs/,g" ${VERTX_HOME}/conf/logging.properties
 
 WORKDIR ${DEPLOYMENTS_HOME}
 
