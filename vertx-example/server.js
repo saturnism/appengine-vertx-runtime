@@ -22,11 +22,13 @@ routes.get('/_ah/health', function(req) {
   req.response.end("ok");
 });
 
+// Start Hook, called before App Engine route traffic to this instance.
 routes.get('/_ah/start', function(req) {
   console.log("Starting...");
   req.response.end("ok");
 });
 
+// Stop Hook, called before App Engine shutdown this instance.
 routes.get('/_ah/stop', function(req) {
   console.log("Stopping...");
   req.response.end("ok");
