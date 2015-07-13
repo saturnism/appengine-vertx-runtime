@@ -14,7 +14,7 @@ Vert.x Custom Runtime
 The Vert.x custom runtime is stored in the docker/ directory.  To build the custom runtime, run:
 
     $ cd docker/
-    $ docker build -t appengine-vertx-runtime
+    $ docker build -t appengine-vertx-runtime .
 
 Running Vert.x Application
 --------------------------
@@ -29,3 +29,12 @@ To deploy this application to a Google Cloud Platform project:
 
     $ cd vertx-example/
     $ gcloud preview app deploy --project YOUR_PROJECT_ID .
+    
+Dockerless Deployment
+---------------------
+If you don't have Docker installed - don't worry.  Google App Engine can deploy with a `--remote` argument
+where Google App Engine can provision a build server to build the runtime for you:
+
+    $ cd vertx-example/
+    $ gcloud preview app deploy --project YOUR_PROJECT_ID --remote app.yaml
+
