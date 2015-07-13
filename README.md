@@ -14,7 +14,7 @@ Vert.x Custom Runtime
 The Vert.x custom runtime is stored in the docker/ directory.  To build the custom runtime, run:
 
     $ cd docker/
-    $ docker build -t appengine-vertx-runtime
+    $ docker build -t appengine-vertx-runtime .
 
 Running Vert.x Application
 --------------------------
