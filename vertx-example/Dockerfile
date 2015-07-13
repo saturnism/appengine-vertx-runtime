@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM appengine-vertx-runtime
+FROM saturnism/appengine-vertx-runtime
 
 COPY . /app
